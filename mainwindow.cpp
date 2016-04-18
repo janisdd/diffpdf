@@ -144,6 +144,8 @@ void MainWindow::createWidgets(const QString &filename1,
     pages2LineEdit->setToolTip(pages1LineEdit->toolTip());
     compareButton = new QPushButton(tr("&Compare"));
     compareButton->setEnabled(false);
+    compareButton->setDefault(true);
+    compareButton->setAutoDefault(true);
     compareButton->setToolTip(tr("<p>Click to compare (or re-compare) "
                 "the documents&mdash;or to cancel a comparison that's "
                 "in progress."));
@@ -1656,6 +1658,8 @@ void MainWindow::saveAsImages(const int start, const int end,
     for (int index = start; index < end; ++index) {
         QImage image(rect.size(), QImage::Format_ARGB32);
         QPainter painter(&image);
+        painter.setRenderHints(QPainter::Antialiasing|
+                QPainter::TextAntialiasing|QPainter::SmoothPixmapTransform);
         painter.setFont(QFont("Helvetica", 11));
         painter.setPen(Qt::darkCyan);
         painter.fillRect(rect, Qt::white);
@@ -1684,6 +1688,8 @@ void MainWindow::saveAsPdf(const int start, const int end,
     printer.setOrientation(savePages == SaveBothPages
             ? QPrinter::Landscape : QPrinter::Portrait);
     QPainter painter(&printer);
+    painter.setRenderHints(QPainter::Antialiasing|
+            QPainter::TextAntialiasing|QPainter::SmoothPixmapTransform);
     painter.setFont(QFont("Helvetica", 11));
     painter.setPen(Qt::darkCyan);
     const QRect rect(0, 0, painter.viewport().width(),
@@ -1718,7 +1724,7 @@ bool MainWindow::paintSaveAs(QPainter *painter, const int index,
     PdfPage page1(pdf1->page(pair.left));
     if (!page1)
         return false;
-    PdfPage page2(pdf2->page(pair.left));
+    PdfPage page2(pdf2->page(pair.right));
     if (!page2)
         return false;
     const QPair<QString, QString> keys = cacheKeys(index, pair);

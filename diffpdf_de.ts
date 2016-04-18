@@ -61,7 +61,7 @@
     <name>MainWindow</name>
     <message>
         <location filename="mainwindow.cpp" line="101"/>
-        <location filename="mainwindow.cpp" line="1683"/>
+        <location filename="mainwindow.cpp" line="1685"/>
         <source>DiffPDF</source>
         <translation>DiffPDF</translation>
     </message>
@@ -685,12 +685,12 @@
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1622"/>
-        <location filename="mainwindow.cpp" line="1668"/>
+        <location filename="mainwindow.cpp" line="1670"/>
         <source>Saved %1</source>
         <translation>Gespeichert unter %1</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1670"/>
+        <location filename="mainwindow.cpp" line="1672"/>
         <source>Failed to save %1</source>
         <translation>Speichern von %1 fehlgeschlagen</translation>
     </message>

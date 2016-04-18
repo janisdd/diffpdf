@@ -20,7 +20,7 @@
 #include <QTextBrowser>
 
 
-static const QString Version("2.1.2");
+static const QString Version("2.1.3");
 
 
 AboutForm::AboutForm(QWidget *parent) : QDialog(parent)
@@ -79,6 +79,8 @@ AboutForm::AboutForm(QWidget *parent) : QDialog(parent)
     "&mdash; German translation and various suggestions</td></tr>"
     "<tr><td>&bull;</td><td>Rory Gordon &mdash; suggested adding "
     "drag and drop</td></tr>"
+    "<tr><td>&bull;</td><td>Bryan Huh &mdash; subtle bug fix"
+    "</td></tr>"
     "<tr><td>&bull;</td><td><b>Steven Lee</b> &mdash; creating "
     "Windows binaries</td></tr>"
     "</table>"));

@@ -139,10 +139,11 @@ const QList<QPainterPath> TextItems::generateZones(const int Width,
 void TextItems::debug(const int page, const int ToleranceY,
         const bool ComparingWords, const bool Yx)
 {
-    QString filename = QDir::tempPath() + QString("/page%1.txt").arg(page);
-    int count = 0;
+    QString filename = QDir::tempPath() + QString("/page1-%1.txt")
+        .arg(page);
+    int count = 1;
     while (QFile::exists(filename)) {
-        filename = QDir::tempPath() + QString("/page%1-%2.txt").arg(page)
+        filename = QDir::tempPath() + QString("/page%2-%1.txt").arg(page)
                                               .arg(++count);
     }
     QFile file(filename);
