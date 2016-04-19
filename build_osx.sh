@@ -23,9 +23,11 @@ make
 # Fix references, remove unneeded Frameworks and build DMG
 macdeployqt diffpdf.app/
 cd diffpdf.app/Contents/Frameworks/
-echo rm -r QtDeclarative.framework/ QtNetwork.framework/ \
+echo -- 'this cmd could be useful for old versions of qt:' \
+rm -r QtDeclarative.framework/ QtNetwork.framework/ \
 QtScript.framework/ QtSql.framework/ QtSvg.framework/ \
 QtXmlPatterns.framework/
 cd ../../..
 ver="$(head -n 1 CHANGES)"
+rm -f "diffpdf-$ver.dmg"
 hdiutil create "diffpdf-$ver.dmg" -srcfolder diffpdf.app/
