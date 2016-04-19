@@ -41,19 +41,28 @@ exists($(HOME)/opt/poppler024/) {
     INCLUDEPATH += $(HOME)/opt/poppler024/include/poppler/qt4
     LIBS += -Wl,-rpath -Wl,$(HOME)/opt/poppler024/lib -L$(HOME)/opt/poppler024/lib
 } else {
+    exists(/usr/local/Cellar/) {
+        message(Using homebrew Poppler Library on OSX)
+        message(It should be done automatically if poppler is installed with cmd: 'brew install poppler --with-qt')
+        message(So nothing to do here)
+#       way from https://gist.github.com/Yann-R/8268157
+#        LIBS += -L$$quote(HOMEBREW_PREFIX/lib) -lpoppler-qt4
+#        INCLUDEPATH += $$quote(HOMEBREW_PREFIX/include/poppler/cpp)
+#        INCLUDEPATH += $$quote(HOMEBREW_PREFIX/include/poppler/qt4)
+    }
     exists(/poppler_lib) {
-	message(Using locally built Poppler library on Windows)
-	INCLUDEPATH += /c/poppler_lib/include/poppler/cpp
-	INCLUDEPATH += /c/poppler_lib/include/poppler/qt4
-	LIBS += -Wl,-rpath -Wl,/c/poppler_lib/bin -Wl,-L/c/poppler_lib/bin
+        message(Using locally built Poppler library on Windows)
+        INCLUDEPATH += /c/poppler_lib/include/poppler/cpp
+        INCLUDEPATH += /c/poppler_lib/include/poppler/qt4
+        LIBS += -Wl,-rpath -Wl,/c/poppler_lib/bin -Wl,-L/c/poppler_lib/bin
     } else {
-	exists(/usr/include/poppler/qt4) {
-	    INCLUDEPATH += /usr/include/poppler/cpp
-	    INCLUDEPATH += /usr/include/poppler/qt4
-	} else {
-	    INCLUDEPATH += /usr/local/include/poppler/cpp
-	    INCLUDEPATH += /usr/local/include/poppler/qt4
-	}
+        exists(/usr/include/poppler/qt4) {
+            INCLUDEPATH += /usr/include/poppler/cpp
+            INCLUDEPATH += /usr/include/poppler/qt4
+        } else {
+            INCLUDEPATH += /usr/local/include/poppler/cpp
+            INCLUDEPATH += /usr/local/include/poppler/qt4
+        }
     }
 }
 #exists($(HOME)/opt/podofo09/) {
