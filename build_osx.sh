@@ -3,7 +3,7 @@ set -o errexit
 set -o pipefail
 
 # install dependency
-which brew 1>/dev/null || /usr/bin/ruby -e "$(curl -fsSL https://raw.github.com/gist/323731)"
+which brew 1>/dev/null || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 brew list qt 1>/dev/null || brew install qt
 brew list poppler 1>/dev/null || brew install poppler --with-qt
 # check poppler installed with required option
