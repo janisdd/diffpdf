@@ -12,7 +12,7 @@
     for more details.
 */
 
-#include <poppler-qt4.h>
+#include <poppler-qt5.h>
 #include <QMetaType>
 #include <QPair>
 #include <QPixmap>
@@ -62,8 +62,8 @@ inline const QChar canonicalizedCharacter(const QChar &in)
     QChar out = in;
     const ushort c = in.unicode();
     switch (c) {
-        case 0x93:   out = QChar(0x201C); break; // “
-        case 0x94:   out = QChar(0x201D); break; // ”
+        case 0x93:   out = QChar(0x201C); break; // "
+        case 0x94:   out = QChar(0x201D); break; // "
         case 0xAD:   // fallthrough (soft-hyphen)
         case 0x2D:   // fallthrough (hyphen-minus)
         case 0x2010: // fallthrough (hyphen)

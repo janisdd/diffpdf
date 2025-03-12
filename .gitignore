@@ -21,3 +21,4 @@ Makefile
 *.qm
 diffpdf.app
 diffpdf-*.dmg
+diffpdf_mac.app
