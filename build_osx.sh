@@ -7,7 +7,7 @@ set -o pipefail
 
 # install dependency
 which brew 1>/dev/null || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-brew list qt 1>/dev/null || brew install qt
+brew list qt@5 1>/dev/null || brew install qt@5
 brew list poppler 1>/dev/null || brew install poppler-qt5
 # check poppler installed with required option
 # (brew info poppler | grep -- 'Built from source' | grep -- '--with-qt' 1>/dev/null) \
@@ -58,6 +58,10 @@ make
 
 # Fix references, remove unneeded Frameworks and build DMG
 $HOMEBREW_QT5_PATH/bin/macdeployqt diffpdf_mac.app/
+
+codesign --force --deep --sign - diffpdf_mac.app
+codesign --verify --deep --verbose diffpdf_mac.app
+
 cd diffpdf_mac.app/Contents/Frameworks/
 echo -- 'this cmd could be useful for old versions of qt:' \
 rm -r QtDeclarative.framework/ QtNetwork.framework/ \
