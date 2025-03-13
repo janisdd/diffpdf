@@ -33,6 +33,9 @@ INCLUDEPATH -= /usr/local/include/poppler/qt4
 INCLUDEPATH += $POPPLER_PATH/include/poppler/cpp
 INCLUDEPATH += $POPPLER_PATH/include/poppler/qt5
 
+# Add macOS icon
+ICON = diffpdf.icns
+
 # Add Qt frameworks
 INCLUDEPATH += $HOMEBREW_QT5_PATH/include
 INCLUDEPATH += $HOMEBREW_QT5_PATH/include/QtWidgets
@@ -50,6 +53,22 @@ CONFIG += sdk_no_version_check
 DEFINES += QT_NO_DEPRECATED_WARNINGS
 EOF
 
+# Create macOS icon set from PNG
+echo "Creating macOS icon set from PNG..."
+mkdir -p diffpdf.iconset
+cp images/icon.png diffpdf.iconset/icon_512x512.png
+sips -z 16 16 images/icon.png --out diffpdf.iconset/icon_16x16.png
+sips -z 32 32 images/icon.png --out diffpdf.iconset/icon_16x16@2x.png
+sips -z 32 32 images/icon.png --out diffpdf.iconset/icon_32x32.png
+sips -z 64 64 images/icon.png --out diffpdf.iconset/icon_32x32@2x.png
+sips -z 128 128 images/icon.png --out diffpdf.iconset/icon_128x128.png
+sips -z 256 256 images/icon.png --out diffpdf.iconset/icon_128x128@2x.png
+sips -z 256 256 images/icon.png --out diffpdf.iconset/icon_256x256.png
+sips -z 512 512 images/icon.png --out diffpdf.iconset/icon_256x256@2x.png
+sips -z 512 512 images/icon.png --out diffpdf.iconset/icon_512x512.png
+iconutil -c icns diffpdf.iconset
+rm -rf diffpdf.iconset
+
 $HOMEBREW_QT5_PATH/bin/lrelease diffpdf.pro
 $HOMEBREW_QT5_PATH/bin/qmake -spec macx-clang CONFIG+=sdk_no_version_check diffpdf_mac.pro
 make
@@ -58,6 +77,14 @@ make
 
 # Fix references, remove unneeded Frameworks and build DMG
 $HOMEBREW_QT5_PATH/bin/macdeployqt diffpdf_mac.app/
+
+# Ensure the Info.plist has the correct icon reference
+if [ -f diffpdf_mac.app/Contents/Info.plist ]; then
+    # Make sure CFBundleIconFile is set correctly
+    plutil -replace CFBundleIconFile -string "diffpdf.icns" diffpdf_mac.app/Contents/Info.plist
+    # Copy the icon file to the Resources directory
+    cp diffpdf.icns diffpdf_mac.app/Contents/Resources/
+fi
 
 codesign --force --deep --sign - diffpdf_mac.app
 codesign --verify --deep --verbose diffpdf_mac.app
