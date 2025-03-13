@@ -13,3 +13,7 @@ fork from: http://www.qtrac.eu/diffpdf-foss.html
 for the last windows 32 version prebuilt, visit http://soft.rubypdf.com/software/diffpdf
 
 for build OS X version please use cmd: ./build_osx.sh
+
+requirements: 
+- brew install poppler-qt5
+- brew install qt@5

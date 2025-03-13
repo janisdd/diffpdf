@@ -22,3 +22,6 @@ Makefile
 diffpdf.app
 diffpdf-*.dmg
 diffpdf_mac.app
+diffpdf_mac.pro
+moc_predefs.h
+.qmake.stash

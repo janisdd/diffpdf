@@ -2,6 +2,9 @@
 set -o errexit
 set -o pipefail
 
+# brew install poppler-qt5
+# brew install qt@5
+
 # install dependency
 which brew 1>/dev/null || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 brew list qt 1>/dev/null || brew install qt
