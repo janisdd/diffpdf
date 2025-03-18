@@ -8,7 +8,7 @@ set -o pipefail
 # install dependency
 which brew 1>/dev/null || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 brew list qt@5 1>/dev/null || brew install qt@5
-brew list poppler 1>/dev/null || brew install poppler-qt5
+brew list poppler-qt5 1>/dev/null || brew install poppler-qt5
 # check poppler installed with required option
 # (brew info poppler | grep -- 'Built from source' | grep -- '--with-qt' 1>/dev/null) \
 # || (echo 'you should install poppler with option! try this: brew uninstall poppler && brew install poppler-qt5'; exit 1)

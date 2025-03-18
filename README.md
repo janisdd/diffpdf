@@ -17,3 +17,22 @@ for build OS X version please use cmd: ./build_osx.sh
 requirements: 
 - brew install poppler-qt5
 - brew install qt@5
+
+if the build script throws errors that qt or poppler is not found, run
+```
+brew info qt@5
+brew info poppler-qt5
+```
+
+and change the path for the `chmod`s in `./build_osx.sh` (and maybe also `HOMEBREW_QT5_PATH`, `POPPLER_PATH`)
+
+my path is `/opt/homebrew/Cellar/qt@5`, found in
+
+```
+# brew info qt@5
+==> qt@5: stable 5.15.16 (bottled) [keg-only]
+Cross-platform application and UI framework
+https://www.qt.io/
+Installed
+/opt/homebrew/Cellar/qt@5/5.15.16 (10,849 files, 341.6MB) <---- path /opt/homebrew/Cellar/qt@5
+```
